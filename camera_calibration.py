@@ -9,8 +9,7 @@ board_w = 6
 def  FindAndDisplayChessboard(img):
     # Find the chess board corners
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
-    ret, corners = cv2.findChessboardCorners(gray, (board_w,board_h),None)
+    ret, corners = cv2.findChessboardCorners(gray, (board_w,board_h),None) # VERY SLOW IMAGE PAIRS: 4, 10
 
     # If found, display image with corners
     if ret == True:
@@ -53,7 +52,6 @@ for fname in images_right:
 
 retval, cameraMatrix1, distCoeffs1, cameraMatrix2, distCoeffs2, R, T, E, F = cv2.stereoCalibrate(objpoints, left_points, right_points, None, None, None, None, (board_h, board_w), flags=cv2.CALIB_SAME_FOCAL_LENGTH)
 
-cv2.waitKey(-1)
 cv2.destroyAllWindows()
 
 np.savez("stereoParams.npz",

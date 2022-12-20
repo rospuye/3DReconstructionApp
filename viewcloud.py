@@ -5,9 +5,12 @@ import os
 
 # parse command line arguments
 parser = argparse.ArgumentParser(description='3D Reconstruction of small objects')
-parser.add_argument('-o', '--object', type=str, required=True, help='Indicate which object you want to view.')
+parser.add_argument('-o', '--object', type=str, required=False, help='Indicate which object you want to view.')
 args = vars(parser.parse_args())
 object = args["object"]
+
+if not object:
+    object = 'melisandre' # default object
 
 # check if we have the necessary data on the specified object
 image_path = 'images/' + object
@@ -17,13 +20,15 @@ if not os.path.exists(image_path) or not os.path.exists(data3d_path):
     exit()
 
 # load 3D reprojections
-DIR = 'images/' + object
-num_imgs = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
+num_imgs = len([name for name in os.listdir(image_path) if os.path.isfile(os.path.join(image_path, name))])
 
-points_3D = np.empty(0)
-for perspective in range(num_imgs):
-    with np.load('3d_data/' + object + '/3DParams' + str(perspective) + '.npz') as data:
-        points_3D = np.concatenate((points_3D, data['proj3D']))
+with np.load('3d_data/' + object + '/3DParams5.npz') as data:
+    points_3D = data['proj3D']
+
+# points_3D = np.empty(0)
+# for perspective in range(num_imgs):
+#     with np.load('3d_data/' + object + '/3DParams' + str(perspective) + '.npz') as data:
+#         points_3D = np.concatenate((points_3D, data['proj3D']))
 
 # reshape and filter the points
 # TODO: filter them properly

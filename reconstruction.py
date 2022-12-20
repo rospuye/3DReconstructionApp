@@ -22,7 +22,7 @@ with np.load('stereoParams.npz') as data:
     F = data['F']
 
 if not object:
-    object = 'lizard' # default object
+    object = 'melisandre' # default object
 else:
     if not os.path.exists('images/' + object):
         print("Oh no! There are no available pictures of this object!")
@@ -36,6 +36,10 @@ if not os.path.exists('3d_data'):
     os.mkdir('3d_data')
 if not os.path.exists('3d_data/' + object):
     os.mkdir('3d_data/' + object)
+
+
+
+
 
 # for each pair of images, compute the 3D data
 for perspective in range(num_imgs):
@@ -63,6 +67,12 @@ for perspective in range(num_imgs):
     map1x, map1y = cv2.initUndistortRectifyMap(intrinsics1, distortion1, R1, P1, (width,height), cv2.CV_32FC1)
     map2x, map2y = cv2.initUndistortRectifyMap(intrinsics2, distortion2, R2, P2, (width,height), cv2.CV_32FC1)
 
+    # cv2.namedWindow('map', cv2.WINDOW_NORMAL)
+    # cv2.resizeWindow('map', 300, 700)
+    # cv2.imshow('map', map1x)
+
+    # cv2.waitKey(-1)
+
     # image remapping
     remap_imgl = None
     gray_imagel = cv2.cvtColor(undistort_left, cv2.COLOR_BGR2GRAY)
@@ -71,6 +81,16 @@ for perspective in range(num_imgs):
     remap_imgr = None
     gray_imager = cv2.cvtColor(undistort_right, cv2.COLOR_BGR2GRAY)
     remap_imgr = cv2.remap(gray_imager, map2x, map2y, cv2.INTER_LINEAR, cv2.BORDER_CONSTANT, 0)
+
+    # cv2.namedWindow('left', cv2.WINDOW_NORMAL)
+    # cv2.resizeWindow('left', 300, 700)
+    # cv2.imshow('left', remap_imgl)
+
+    # cv2.namedWindow('right', cv2.WINDOW_NORMAL)
+    # cv2.resizeWindow('right', 300, 700)
+    # cv2.imshow('right', remap_imgr)
+
+    # cv2.waitKey(-1)
 
     # call the constructor for StereoBM
     stereo = cv2.StereoBM_create(numDisparities=16*5, blockSize=21)
