@@ -1,0 +1,11 @@
+Model Information:
+* title:	Single Strawberry
+* source:	https://sketchfab.com/3d-models/single-strawberry-8762d4cd820745afba7eb22b0acb2cfd
+* author:	aaa888 (https://sketchfab.com/aaa888)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Single Strawberry" (https://sketchfab.com/3d-models/single-strawberry-8762d4cd820745afba7eb22b0acb2cfd) by aaa888 (https://sketchfab.com/aaa888) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
