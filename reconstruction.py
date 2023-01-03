@@ -39,8 +39,6 @@ if not os.path.exists('3d_data/' + object):
 
 
 
-
-
 # for each pair of images, compute the 3D data
 for perspective in range(num_imgs):
     left_idx = perspective
